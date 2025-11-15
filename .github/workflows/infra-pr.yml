@@ -30,7 +30,7 @@ jobs:
       - name: Initialize terraform
         working-directory: devops
         run: |
-          terraform init backend-config="variables/dev/dev.backend.tfvars"
+          terraform init -backend-config="variables/dev/dev.backend.tfvars"
       - name: Check terraform format
         run: |
           terraform fmt -recursive -check
