@@ -45,13 +45,13 @@ jobs:
         fi
       shell: bash
     - name: Terraform Apply
-      if: ${{ github.events.inputs.action == "apply" }}
+      if: ${{ github.events.inputs.action == 'apply' }}
       working-directory: devops
       run: |
         terraform apply tfplan
     - name: Terraform Destroy
       working-directory: devops
-      if: ${{ github.events.inputs.action == "destroy" }}
+      if: ${{ github.events.inputs.action == 'destroy' }}
       run: |
         terraform apply tfplan-destroy
 
