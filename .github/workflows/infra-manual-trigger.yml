@@ -37,7 +37,7 @@ jobs:
     - name: Plan Terraform
       working-directory: devops
       run: |
-        action=${{ github.events.inputs.action }}
+        action=${{ inputs.action }}
         echo "action=$action"
         if [ "$action" = "apply" ]; then
           terraform plan -var-file="variables/dev/dev.tfvars" -out=tfplan
@@ -46,7 +46,7 @@ jobs:
         fi
       shell: bash
     - name: Terraform Apply
-      if: ${{ github.events.inputs.action == 'apply' }}
+      if: ${{ inputs.action == 'apply' }}
       working-directory: devops
       run: |
         terraform apply tfplan
