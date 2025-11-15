@@ -33,7 +33,7 @@ jobs:
     - name: Initialize Terraform
       working-directory: devops
       run: |
-        terraform init -backend-config="variables/de/dev.backend.tfvars"
+        terraform init -backend-config="variables/dev/dev.backend.tfvars"
     - name: Plan Terraform
       working-directory: devops
       run: |
