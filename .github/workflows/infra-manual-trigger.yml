@@ -38,7 +38,7 @@ jobs:
       working-directory: devops
       run: |
         action=${{ github.events.inputs.action }}
-        if[ "$action" = "apply" ]; then
+        if [ "$action" = "apply" ]; then
           terraform plan -var-file="variables/dev/dev.tfvars" -out=tfplan
         else
           terraform plan -var-file="variable/dev/dev.tfvars" -destroy -out=tfplan-destroy
