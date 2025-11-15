@@ -34,7 +34,7 @@ jobs:
       - name: Check terraform format
         run: |
           terraform fmt -recursive -check
-          if[ "$?" -ne 0 ]; then
+          if [ "$?" -ne 0 ]; then
             echo "❌ Terraform format check failed. Terraform code is not formated."
             exit 1
           else
@@ -49,7 +49,7 @@ jobs:
           terraform validate -no-color -json > tfvalidation.json
           is_valid=$(jq '.valid' tfvalidation.json)
           echo 
-          if[ "$is_valid" = "true" ]; then
+          if [ "$is_valid" = "true" ]; then
             echo "❌ Terraform validation passed."
             exit 0
           else
