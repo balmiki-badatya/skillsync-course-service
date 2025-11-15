@@ -1,0 +1,6 @@
+aws:
+  paramstore:
+    enabled: true
+    prefix:  dev
+    default-context: course-service
+    fail-fast: true

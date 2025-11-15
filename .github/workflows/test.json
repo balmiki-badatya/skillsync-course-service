@@ -1,0 +1,9 @@
+{
+  "@level": "info",
+  "@message": "Success! The configuration is valid.",
+  "@module": "terraform.ui",
+  "@timestamp": "2025-11-14T19:40:00.000Z",
+  "type": "validate_result",
+  "valid": true,
+  "diagnostics": []
+}
