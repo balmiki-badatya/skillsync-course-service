@@ -1,0 +1,61 @@
+name: Course Service Infrastructure PR check workflow
+
+on:
+  pull_request:
+    branches:
+      - main
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  validate-infra-coode:
+    runs-on: ubuntu-latest
+    name: Validate Terraform Code
+    steps:
+      - name: checkout repository
+        uses: actions/checkout@v5
+      - name: Setup environment
+        uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: "1.5.7"
+      - name: Authenticate with OIDC
+        uses: aws-actions/configure-aws-credentials@v5.1.0
+        with:
+          aws-region: ${{ secrets.AWS_REGION }}
+          role-to-assume: ${{ secrets.ASSUME_ROLE }}
+      - name: Verify login
+        run: |
+          aws sts get-caller-identity
+      - name: Initialize terraform
+        working-directory: devops
+        run: |
+          terraform init backend-config="variables/dev/dev.backend.tfvars"
+      - name: Check terraform format
+        run: |
+          terraform fmt -recursive -check
+          if[ "$?" -ne 0 ]; then
+            echo "❌ Terraform format check failed. Terraform code is not formated."
+            exit 1
+          else
+            echo "✅ Terraform format check passed."
+            exit 0
+          fi
+        shell: bash
+        continue-on-error: false
+      - name: Validate terraform code
+        working-directory: devops
+        run: |
+          terraform validate -no-color -json > tfvalidation.json
+          is_valid=$(jq '.valid' tfvalidation.json)
+          echo 
+          if[ "$is_valid" = "true" ]; then
+            echo "❌ Terraform validation passed."
+            exit 0
+          else
+            echo "✅ Terraform validation failed."
+            exit 1
+          fi
+        shell: bash
+        continue-on-error: false
+          

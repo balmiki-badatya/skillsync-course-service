@@ -1,0 +1,7 @@
+spring:
+  application:
+    name: course-service
+aws:
+  region: ${aws.region}
+  dynamodb:
+    endpoint: ${aws.dynamodb.endpoint}
