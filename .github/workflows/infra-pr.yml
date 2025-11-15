@@ -50,10 +50,10 @@ jobs:
           is_valid=$(jq '.valid' tfvalidation.json)
           echo 
           if [ "$is_valid" = "true" ]; then
-            echo "❌ Terraform validation passed."
+            echo "✅ Terraform validation passed."
             exit 0
           else
-            echo "✅ Terraform validation failed."
+            echo "❌ Terraform validation failed."
             exit 1
           fi
         shell: bash
