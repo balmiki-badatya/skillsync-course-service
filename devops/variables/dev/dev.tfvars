@@ -1,0 +1,6 @@
+default_aws_region   = "us-west-1"
+created_by           = "Terraform"
+managed_by           = "GitHub Actions"
+application          = "Skillsync"
+ecr_repo_name        = "course-service"
+image_tag_mutability = "IMMUTABLE"
