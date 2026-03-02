@@ -7,6 +7,16 @@ locals {
     managed_by  = var.managed_by
     application = var.application
   }
+
+  params = {
+    param1 = {
+      
+    }
+    param2 = {
+      
+    }
+  }
+
 }
 
 module "ecr" {
@@ -16,5 +26,5 @@ module "ecr" {
     ecr_repo_name        = var.ecr_repo_name
     default_tags         = local.default_tags
   }
-
 }
+

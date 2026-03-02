@@ -28,3 +28,13 @@ variable "image_tag_mutability" {
   type        = string
   description = "ECR repo mutability config"
 }
+
+
+########################################### param-store Variables ########################################### 
+variable "dynamodb_endpoint"{
+  type = string
+  description = "DynamoDB endpoint"
+}
+
+########################################### dynamodb Variables ########################################### 
+

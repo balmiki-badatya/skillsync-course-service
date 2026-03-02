@@ -16,7 +16,7 @@ import static org.springframework.web.reactive.function.server.RouterFunctions.r
 @EnableWebFlux
 public class ServiceRoutingConfig {
 
-    private static final String BASE_PATH = RouteConstant.CONTEXT_PATH.concat(RouteConstant.VERSION_V1);
+    private static final String BASE_PATH = RouteConstant.CONTEXT_PATH.concat(RouteConstant.SLASH).concat(RouteConstant.VERSION_V1);
     private static final String GET_COURSE_BY_ID = BASE_PATH.concat(RouteConstant.GET_TOPIC_BY_ID_PATH);
     private static final String CREATE_TOPIC = BASE_PATH.concat(RouteConstant.CREATE_TOPIC);
 
